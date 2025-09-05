@@ -57,7 +57,14 @@
                 </div>
             </div>
             <div class="hero-image">
-                <img class="profile-photo" src="abc.png" alt="seabul islam">
+                <div class="photo-ring">
+                    <img class="profile-photo" src="abc.png" alt="seabul islam">
+                </div>
+                <div class="hero-badges">
+                    <span class="badge">✨ Responsive</span>
+                    <span class="badge">⚡ Fast</span>
+                    <span class="badge">🔒 Secure</span>
+                </div>
             </div>
         </div>
     </section>
@@ -274,13 +281,15 @@
                         <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
-                <form class="contact-form" id="contact-form">
-                    <input type="hidden" name="access_key" value="331e87d5-4f4b-4127-a17f-cd09872c1672" />
+                <form class="contact-form" id="contact-form" action="https://formspree.io/f/mjkepzjb" method="POST">
                     <div class="form-group">
                         <input type="text" id="name" name="name" placeholder="Your Name" required>
                     </div>
                     <div class="form-group">
                         <input type="email" id="email" name="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" id="phone" name="phone" placeholder="Your Phone Number" required>
                     </div>
                     <div class="form-group">
                         <input type="text" id="subject" name="subject" placeholder="Subject" required>

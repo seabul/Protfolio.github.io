@@ -62,29 +62,44 @@ document.addEventListener('DOMContentLoaded', () => {
 
     sections.forEach(section => observer.observe(section));
 
-    // Contact form submission via Web3Forms
+    // Formspree form handling
     const contactForm = document.getElementById('contact-form');
     const formStatus = document.getElementById('form-status');
+    
     if (contactForm) {
         contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            formStatus.textContent = 'Sending...';
-            const formData = new FormData(contactForm);
-
+            
+            // Show loading state
+            formStatus.textContent = 'Sending message...';
+            formStatus.style.color = '#6b7280';
+            
             try {
-                const response = await fetch('https://api.web3forms.com/submit', {
+                const formData = new FormData(contactForm);
+                const response = await fetch(contactForm.action, {
                     method: 'POST',
-                    body: formData
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
                 });
-                const result = await response.json();
-                if (result.success) {
-                    formStatus.textContent = 'Thank you! Your message has been sent.';
+                
+                if (response.ok) {
+                    formStatus.textContent = 'Thank you! Your message has been sent successfully.';
+                    formStatus.style.color = '#16a34a';
                     contactForm.reset();
                 } else {
-                    formStatus.textContent = 'Sorry, something went wrong. Please try again.';
+                    const data = await response.json();
+                    if (data.errors) {
+                        formStatus.textContent = 'Please check your form and try again.';
+                    } else {
+                        formStatus.textContent = 'Sorry, there was an error sending your message.';
+                    }
+                    formStatus.style.color = '#dc2626';
                 }
-            } catch (err) {
+            } catch (error) {
                 formStatus.textContent = 'Network error. Please try again later.';
+                formStatus.style.color = '#dc2626';
             }
         });
     }

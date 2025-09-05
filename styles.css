@@ -551,6 +551,11 @@ body {
     border-radius: 12px;
 }
 
+.form-status {
+    margin-top: 1rem;
+    color: var(--muted-text);
+}
+
 .form-group {
     margin-bottom: 1.5rem;
 }
